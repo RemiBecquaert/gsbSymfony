@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Liste des utilisateurs du site{% endblock %}
+
+{% block body %}
+<div class="container p-4">
+    <div class="container-fluid">
+		<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">
+			Liste des utilisateurs</h1>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8 bg-white p-4 m-0 text-primary">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr class="fw-bold text-primary">
+								<th scope="col">Nom</th>
+								<th scope="col">Prénom</th>
+                                <th scope="col">Adresse</th>
+								<th scope="col">Code Postal</th>
+								<th scope="col">Ville</th>
+								<th scope="col">Date d'embauche</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for utilisateur in utilisateurs |sort((a, b) => a.nom <=> b.nom) %}
+								<tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+									<td>{{ utilisateur.nom | upper }}</td>
+									<td>{{ utilisateur.prenom | capitalize }}</td>
+                                    <td>{{ utilisateur.adresse }}</td>
+									<td>{{ utilisateur.cp }}</td>
+									<td>{{ utilisateur.ville }}</td>
+									<td>{{ utilisateur.dateembauche | date("d-m-Y")}}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Page d'accueil{% endblock %}
+
+{% block body %}
+<div class="container p-4">
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="{{asset('images/logo_gsb.png')}}" style="width:150%" class="img-fluid img-thumbnail" alt="Logo Galaxy Swiss Bourdin">
+        </div>
+        <div class="col-lg-8">
+            <div class="jumbotron">
+                <h1 class="display-4">Galaxy Swiss Bourdin</h1>
+                <p class="lead">Pionnière de l'industrie pharmaceutique depuis des décennies, Galaxy Swiss Bourdin commercialise des solutions médicamenteuses à travers le monde</p>
+                <hr class="my-4">
+                <p>Découvrez notre entreprise, notre savoir-faire, nos processus et bien plus encore</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{{path('app_presentation')}}" role="button">En savoir plus</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
