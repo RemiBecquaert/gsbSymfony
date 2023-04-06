@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Galaxy Swiss Bourdin - {% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
     </head>
     <body>
@@ -33,25 +34,55 @@
                                     <li><a class="dropdown-item" href="{{path('app_segmentation')}}">SEGMENTATION</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    LES UTILISATEURS
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{path('app_contact')}}">
+                                    Prendre contact
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{path('app_utilisateurs')}}">LISTE DES UTILISATEURS</a></li>
-                                    <li><a class="dropdown-item" href="{{path('app_cadurciens')}}">NOS CADURCIENS</a></li>
-                                    <li><a class="dropdown-item" href="{{path('app_frais')}}">AYANT DES FRAIS</a></li>
-                                    <li><a class="dropdown-item" href="{{path('app_pas_de_frais')}}">N'AYANT PAS DE FRAIS</a></li>
-                                    <li><a class="dropdown-item" href="{{path('app_nombre_de_frais')}}">NOMBRE DE FRAIS</a></li>
-                                </ul>
                             </li>
+                            
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        LES UTILISATEURS
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{path('app_utilisateurs')}}">LISTE DES UTILISATEURS</a></li>
+                                        <li><a class="dropdown-item" href="{{path('app_cadurciens')}}">NOS CADURCIENS</a></li>
+                                        <li><a class="dropdown-item" href="{{path('app_frais')}}">AYANT DES FRAIS</a></li>
+                                        <li><a class="dropdown-item" href="{{path('app_pas_de_frais')}}">N'AYANT PAS DE FRAIS</a></li>
+                                        <li><a class="dropdown-item" href="{{path('app_nombre_de_frais')}}">NOMBRE DE FRAIS</a></li>
+                                    </ul>
+                                </li>    
+                            {% endif %}  
+
+                            {% if not app.user %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{path('app_login')}}">Se connecter
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{path('app_register')}}">S'inscrire
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white">{{ app.user.email }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{path('app_logout')}}">
+                                        Se déconnecter
+                                    </a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
             </nav>
-            <div class="pb-2">
-                <img src="{{asset('images/bg_gsb.jpg')}}" style="width:150%" class="img-fluid img-thumbnail" alt="Logo Galaxy Swiss Bourdin">
-            </div>
+                {% for message in app.flashes('notice') %}
+                    <h2 class="alert alert-warning text-center" role="alert">
+                        {{ message }}
+                    </h2>
+                {% endfor %}
         {% endblock %}
 
         {% block body %}{% endblock %}
@@ -68,5 +99,53 @@
         {% endblock %}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+        <script src="/tarteaucitron/tarteaucitron.js"></script>
+
+        <script src="{{asset('js/tarteaucitron/tarteaucitron.js')}}"></script>
+
+        <script type="text/javascript">
+        tarteaucitron.init({
+    	  "privacyUrl": "", /* Privacy policy url */
+          "bodyPosition": "bottom", /* or top to bring it as first element for accessibility */
+
+    	  "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+    	  "cookieName": "tarteaucitron", /* Cookie name */
+    
+    	  "orientation": "middle", /* Banner position (top - bottom) */
+       
+          "groupServices": false, /* Group services by category */
+          "serviceDefaultState": "wait", /* Default state (true - wait - false) */
+                           
+    	  "showAlertSmall": false, /* Show the small banner on bottom right */
+    	  "cookieslist": false, /* Show the cookie list */
+                           
+          "closePopup": false, /* Show a close X on the banner */
+
+          "showIcon": true, /* Show cookie icon to manage cookies */
+          //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
+          "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
+
+    	  "adblocker": false, /* Show a Warning if an adblocker is detected */
+                           
+          "DenyAllCta" : true, /* Show the deny all button */
+          "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+          "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
+                           
+    	  "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+
+    	  "removeCredit": false, /* Remove credit link */
+    	  "moreInfoLink": true, /* Show more info link */
+
+          "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+          "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
+
+    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                          
+          "readmoreLink": "", /* Change the default readmore link */
+
+          "mandatory": true, /* Show a message about mandatory cookies */
+          "mandatoryCta": true /* Show the disabled accept button when mandatory on */
+        });
+        </script>
     </body>
 </html>

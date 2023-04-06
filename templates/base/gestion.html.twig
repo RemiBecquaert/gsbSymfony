@@ -4,5 +4,24 @@
 
 {% block body %}
 {{ parent() }}
-Gestion
+		<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">
+			Gestion de GSB</h1>
+
+<div class="container p-4">
+    <p>
+    La DSI (Direction des Services Informatiques) est une entité importante de la structure Europe qui
+    participe aux choix stratégiques.<br/>
+    Pour Swiss-Bourdin, qui occupait le siège parisien avant la fusion, l'outil informatique et l'utilisation
+    d'outils décisionnels pour améliorer la vision et la planification de l'activité ont toujours fait partie de la
+    politique maison, en particulier pour ce qui concerne la partie recherche, production, communication et
+    juridique.<br/>
+    La partie commerciale a été le parent pauvre de cette informatisation, les visiteurs étant vus
+    comme des acteurs distants autonomes. La DSI a convaincu l'entreprise que l'intégration des
+    données fournies par cette partie aura un impact important sur l'ensemble de l'activité. 
+    </p>
+</div>    
+
+<div class="pb-2 text-center">
+    <img src="{{asset('images/logo_gsb.png')}}" class="img-fluid img-thumbnail" alt="Logo Galaxy Swiss Bourdin">
+</div>
 {% endblock %}

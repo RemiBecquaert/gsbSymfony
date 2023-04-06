@@ -39,6 +39,48 @@ class UtilisateurRepository extends ServiceEntityRepository
         }
     }
 
+    public function getCadurciens(){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery("SELECT u FROM App\Entity\Utilisateur u WHERE u.ville = :laVille");
+        $query->setParameter(":laVille", 'Cahors');
+        $laListe = $query->getResult();
+        return $laListe;
+    }
+       
+    public function getAvecFrais() {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery("SELECT u.nom, u.prenom, SUM(f.montantValide) AS total FROM App\Entity\Fichefrais f JOIN App\Entity\Utilisateur u 
+        WITH f.idUtilisateur = u.id GROUP BY u.id");
+        return $query->getResult();
+    }
+
+    public function getSansFrais(){
+        //SELECT * FROM `utilisateur`
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select("u.nom, u.prenom, COUNT(u2.id) AS count")
+            ->from("App\Entity\Utilisateur"," u")
+            ->leftJoin('App\Entity\Fichefrais','u2',  \Doctrine\ORM\Query\Expr\Join::WITH, 'u.id = u2.idUtilisateur')
+            ->groupBy("u.id")
+            ->orderBy("u.nom")
+            ->where("u2.id is null");
+        $laListe = $query->getQuery()->getResult();
+        return $laListe;
+    }
+
+    public function getNbFrais(){
+        //SELECT * FROM `utilisateur`
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select("u.nom, COUNT(u2.id) AS count")
+            ->from("App\Entity\Utilisateur"," u")
+            ->leftJoin('App\Entity\Fichefrais','u2',  \Doctrine\ORM\Query\Expr\Join::WITH, 'u.id = u2.idUtilisateur')
+            ->groupBy("u.id")
+            ->orderBy("u.nom");
+        $laListe = $query->getQuery()->getResult();
+        return $laListe;
+    }
+
 //    /**
 //     * @return Utilisateur[] Returns an array of Utilisateur objects
 //     */

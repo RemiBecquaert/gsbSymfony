@@ -32,9 +32,6 @@ class Utilisateur
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateEmbauche = null;
 
-    #[ORM\OneToOne(mappedBy: 'idUtilisateur', cascade: ['persist', 'remove'])]
-    private ?FicheFrais $ficheFrais = null;
-
     public function getId(): ?int
     {
         return $this->id;

@@ -4,5 +4,28 @@
 
 {% block body %}
 
-Contact
+		<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">
+			Prendre contact</h1>
+
+<div class="container p-4">
+                {{form_start(form, {'attr':{'class':'text-center'}})}}
+
+                {{form_label(form.email, 'Saisir votre adresse-mail', {'label_attr':{'class':'fw-bold text-dark'}})}}
+                {{form_widget(form.email, {'attr':{'class':'form-control text-dark', 'placeholder':'Votre adresse-mail', 'minlength':'6', 'maxlength':'80', 'type':'email'}})}}
+
+                {{form_label(form.nom, 'Saisir votre nom', {'label_attr':{'class':'fw-bold text-dark'}})}}
+                {{form_widget(form.nom, {'attr':{'class':'form-control text-dark', 'placeholder':'Votre nom', 'minlength':'2', 'maxlength':'255'}})}}
+
+                {{form_label(form.prenom, 'Saisir votre prénom', {'label_attr':{'class':'fw-bold text-dark'}})}}
+                {{form_widget(form.prenom, {'attr':{'class':'form-control text-dark', 'placeholder':'Votre prénom', 'minlength':'2', 'maxlength':'50'}})}}
+
+                {{form_label(form.sujet, 'Objet du message', {'label_attr':{'class':'fw-bold text-dark'}})}}
+                {{form_widget(form.sujet, {'attr':{'class':'form-control text-dark', 'placeholder':'Objet', 'maxlength':'100'}})}}
+
+                {{form_label(form.texte, 'Saisir votre message', {'label_attr':{'class':'fw-bold text-dark'}})}}
+                {{form_widget(form.texte, {'attr':{'class':'form-control text-dark', 'placeholder':'Votre message'}})}}
+
+                {{form_widget(form.submit, {'label':"Envoyer la demande de contact", 'attr':{'class':'btn btn-outline-primary mt-3'}})}}
+                {{form_end(form, {render_rest: true})}} 
+</div>                
 {% endblock %}

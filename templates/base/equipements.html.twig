@@ -4,5 +4,26 @@
 
 {% block body %}
 {{ parent() }}
-Équipements
+
+<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">
+			Nos équipements</h1>
+
+<div class="container p-4">
+    <p>
+    L'informatique est fortement répandue sur le site. Chaque employé est équipé d'un poste fixe relié au
+    système central. On dénombre ainsi plus de 350 équipements terminaux et un nombre de serveurs
+    physiques conséquent (45 en 2012) sur lesquels tournent plus de 100 serveurs virtuels.<br/>
+    On trouve aussi des stations de travail plus puissantes dans la partie labo-recherche, et une multitude
+    d'ordinateurs portables (personnels de direction, service informatique, services commerciaux, etc).<br/>
+    Les visiteurs médicaux reçoivent une indemnité bisannuelle pour s'équiper en informatique (politique
+    Swiss-Bourdin) ou une dotation en équipement (politique Galaxy). Il n'y a pas à l'heure actuelle
+    d'uniformisation des machines ni du mode de fonctionnement.<br/>
+    Chaque employé de l'entreprise a une adresse de messagerie de la forme nomUtilisateur@swissgalaxy.com. Les anciennes adresses de chaque laboratoire ont été définitivement fermées au 1er
+    janvier 2011. 
+    </p>
+</div>
+
+<div class="container pb-2 text-center p-4">
+    <img src="{{asset('images/open_space.jpg')}}" class="img-fluid img-thumbnail" alt="Logo Galaxy Swiss Bourdin">
+</div>
 {% endblock %}

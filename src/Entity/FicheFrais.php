@@ -14,7 +14,7 @@ class FicheFrais
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'ficheFrais', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'ficheFrais')]
     private ?Utilisateur $idUtilisateur = null;
 
     #[ORM\Column(length: 6)]

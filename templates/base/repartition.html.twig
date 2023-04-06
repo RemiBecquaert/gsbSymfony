@@ -4,6 +4,46 @@
 
 {% block body %}
 {{ parent() }}
-Répartition
+<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">
+			Répartition des services</h1>
+<div class="container p-4">
+    <div class="row">
+        <div class="col">
+            <p>
+                Chaque étage dispose d'une baie de
+                brassage qui le relie par une fibre à la
+                baie centrale de la salle serveurs.
+                Toutes les salles de réunion sont
+                équipées d'un point d'accès Wifi
+                positionné par défaut dans le VLAN
+                "Visiteurs" qui autorise uniquement un
+                accès Internet.<br/>
+                Les portables connectés en wifi à ce
+                point d'accès reçoivent ainsi une
+                adresse IP et n'ont, par conséquent
+                accès qu'aux services DHCP et DNS.
+                Le point d’accès peut être configuré à
+                la demande pour être raccordé à un
+                VLAN présent au niveau de l'étage.<br/>
+                Chaque salle de réunion dispose d'un
+                vidéoprojecteur, d'enceintes et d'un
+                tableau numérique interactif.<br/>
+                La salle "Démonstration" est destinée à
+                l'accueil des organismes de santé
+                (AFSSAPS notamment) et des
+                partenaires scientifiques. Elle dispose
+                de paillasses et d'équipements de
+                laboratoire, en plus d'une salle de réunion.
+            </p> 
+        </div>
+        <div class="col">
+            <div class="container pb-2 text-center p-4">
+                <img src="{{asset('images/serveur.jpg')}}" class="img-fluid img-thumbnail" alt="Logo Galaxy Swiss Bourdin">
+            </div>
+        </div>
+    </div>
+       
+</div>
+
 
 {% endblock %}

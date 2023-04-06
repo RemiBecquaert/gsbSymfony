@@ -4,5 +4,35 @@
 
 {% block body %}
 {{ parent() }}
-Segmentation
+<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">Segmentation</h1>
+
+<div class="container p-4 text-center">
+    <p>L'organisation des VLAN et de l'adressage IP est la suivante : </p>
+    <div class="pb-2">
+        <img src="{{asset('images/vlan.png')}}" class="img-fluid img-thumbnail" alt="Logo Galaxy Swiss Bourdin">
+    </div>
+</div>
+
+<div class="container p-4">
+    <p>Les règles actuelles concernant les vlans sont les suivantes :<br/>
+    - chaque vlan (sauf le vlan visiteur) peut uniquement accéder (quel que soit le protocole) aux
+    vlans "Serveurs" et "Sortie";<br/>
+    - le vlan "Visiteurs" peut uniquement interroger les serveur DNS et DHCP et sortir sur internet ;<br/>
+    </p>
+
+    <p>Les bases de données des serveurs BDMED et BDPHARMA sont achetées périodiquement auprès
+    d'organismes extérieurs et tenues à jour par les employés entre deux achats.<br/>
+    Le commutateur MUTLAB assure un fonctionnement de niveau 3. À ce titre, il réalise un routage intervlan en limitant les communications grâce à des listes de contrôles d'accès (ACL).<br/>
+    Le serveur de messagerie et l'intranet sont limités à un usage interne au site parisien. Des services
+    externalisés (relai de messagerie auprès de l'opérateur et recopie d'une partie du serveur intranet sur
+    le serveur Web hébergé chez un prestataire) permettent aux visiteurs médicaux d'utiliser la
+    messagerie de l'entreprise et d'avoir accès aux principales informations de l'intranet (Comité
+    d'entreprise, circulaires importantes, stratégie de l'entreprise, comptes rendus de CA, etc.).<br/>
+    La messagerie publique @swiss-galxy.com est hébergée aux États-Unis
+    </p>
+
+</div>
+
+
+
 {% endblock %}
